@@ -8,7 +8,7 @@ class Fruta(IFruta):
         self.color = color or None
         self.prices = prices or []
     def rot(self):
-        print('im sad')
+        print('im sad', self.color)
 
 
 bananinha = Fruta(color='Yellow')
@@ -17,4 +17,4 @@ surpresa = Fruta()
 bananinha.prices.append(2.99)
 
 print(bananinha.prices)
-print(surpresa.rot())
+print(bananinha.rot())

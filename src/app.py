@@ -1,24 +1,37 @@
 import re
 
+class ISolve:
+    def solve(self) -> int:
+        '''
+        Method used for solvin day one of advent of code 2023
+        '''
 
-def estrelinha(fileName):
-    sum = 0
 
-    with open(fileName, 'r', encoding='utf-8') as file:
-        lines = file.readlines()
+class Solve(ISolve):
+    def __init__(self,  fileName: str) -> None:
+        self.fileName = fileName
 
-    for i in range(lines.__len__()):
-        line = lines[i]
-        digitsLine = getDigits(line)
-        sum += int(str(digitsLine[0]) + str(digitsLine[-1]))
-        print(str(digitsLine[0]) + str(digitsLine[-1]))
-        # print(f'{line} && {digitsLine}')
-    print(str(len(lines)) + '    | AAAAAAAAAAAAAAAAAAAAAAAAAAA')
-    return sum
+    def solve(self, includeSpelled: bool | None = True) -> int:
+        self.includeSpelled = includeSpelled
 
-def getDigits(string):
-        pattern = re.compile('(\d|one|two|three|four|five|six|seven|eight|nine)')
+        sum = 0
+
+        with open(self.fileName, 'r', encoding='utf-8') as file:
+            lines = file.readlines()
+
+        for i in range(lines.__len__()):
+            line = lines[i]
+            digitsLine = getDigits(line,includeSpelled=includeSpelled)
+            sum += int(str(digitsLine[0]) + str(digitsLine[-1]))
+        return sum
+
+def getDigits(string: str, includeSpelled: bool = True) -> list[int]:
         find = []
+
+        if(includeSpelled):
+            pattern = re.compile('(\d|one|two|three|four|five|six|seven|eight|nine)')
+        else:
+            pattern = re.compile('(\d)')
 
         for c in range(len(string)):
             result = pattern.match(string, c)
@@ -45,9 +58,9 @@ def getDigits(string):
             if(name == 'nine'):
                 find[i] = 9
 
-        print(string)
-        print(find)
-
         return find
 
-print(estrelinha("src/day1_input.txt"))
+solver = Solve(fileName="src/day1_input.txt")
+
+print(solver.solve(includeSpelled=False))
+print(solver.solve())
