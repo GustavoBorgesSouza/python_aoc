@@ -1,7 +1,6 @@
 import re
 
 
-
 def estrelinha(fileName):
     sum = 0
 
