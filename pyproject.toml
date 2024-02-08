@@ -21,3 +21,24 @@ yapf = "^0.40.2"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+addopts= "-ra"
+testpaths = [
+    "tests"
+]
+
+[tool.coverage.run]
+branch = true
+source = [
+    "src/"
+]
+
+[tool.coverage.report]
+exclude_also = [
+    "def __repr__",
+    "if self\\.debug",
+    "if __name__ == .__main__.:",
+    "@(abs\\.)?abstractmethod"
+]
+ignore_errors = true

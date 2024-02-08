@@ -3,7 +3,7 @@ import re
 class ISolve:
     def solve(self) -> int:
         '''
-        Method used for solvin day one of advent of code 2023
+        Method used for solving day one of advent of code 2023
         '''
 
 
